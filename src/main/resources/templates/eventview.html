@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kreiraj događaj</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/white-paper-texture-background_23-2151025768.jpg?t=st=1717284234~exp=1717287834~hmac=4689d5fbf3573ea1b1694a759ff458c9038e3e0b00b7d4b7e1e5b8e2b3ebf53e&w=1060'); /* URL pozadine slike */
+            background-size: cover; /* Pokriva cijelu pozadinu */
+            background-position: center; /* Centrira pozadinu */
+            background-attachment: fixed; /* Pozadina je fiksirana prilikom skrolanja */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 100px auto;
+            background-color: #f8f9fa; /* Light background for the form */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow effect */
+            position: relative; /* For the stamp positioning */
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Gray button color */
+            border-color: #6c757d; /* Gray border color */
+            display: block;
+            margin: 20px auto; /* Center the button */
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker shade for hover effect */
+            border-color: #545b62; /* Darker shade for hover effect */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #343a40;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3rem;
+            color: rgba(52, 58, 64, 0.5); /* Subtle dark color */
+            transform: rotate(20deg);
+            font-family: 'Allison', cursive;
+            pointer-events: none; /* Make sure the stamp does not interfere with other elements */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" aria-current="page" th:href="@{/events}">EventPlus</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/eventview}">Kreiraj događaj</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Odjavi se</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="mb-4">Kreiraj događaj</h1>
+    <div class="stamp">EventPlus</div>
+    <form th:action="@{/events}" th:object="${event}" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Naslov</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Opis</label>
+            <textarea class="form-control" id="description" th:field="*{description}" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Lokacija</label>
+            <input type="text" class="form-control" id="location" th:field="*{location}" required>
+        </div>
+        <div class="mb-3">
+            <label for="startDatetime" class="form-label">Datum i vrijeme početka</label>
+            <input type="datetime-local" class="form-control" id="startDatetime" th:field="*{startDatetime}" required>
+        </div>
+        <div class="mb-3">
+            <label for="endDatetime" class="form-label">Datum i vrijeme završetka</label>
+            <input type="datetime-local" class="form-control" id="endDatetime" th:field="*{endDatetime}" required>
+        </div>
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">URL slike</label>
+            <input type="url" class="form-control" id="imageUrl" th:field="*{imageUrl}">
+        </div>
+        <button type="submit" class="btn btn-secondary">Kreiraj događaj</button>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

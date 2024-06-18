@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+    <!-- Dodajemo Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <style>
+        body {
+            /* Background slika se mijenja na svakih 10 sekundi */
+            background: url('https://picsum.photos/id/1001/1920/1080') no-repeat fixed center;
+            animation: slideshow 10s infinite;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+            color: white; /* Text color */
+        }
+
+        /* Keyframes za animaciju promjene slika */
+        @keyframes slideshow {
+            0% {
+                background-image: url('https://img.freepik.com/free-photo/view-black-white-theatre-stage_23-2151184623.jpg?t=st=1716902065~exp=1716905665~hmac=63ff437eff897369c79b213ddec0be1cf120ad4d904d9c727e7111d89b8c15b0&w=1060');
+            }
+            20% {
+                background-image: url('https://img.freepik.com/free-photo/view-futuristic-concert_23-2151073008.jpg?t=st=1716935419~exp=1716939019~hmac=2fbb219927e6aea7063b7847bfe40ff20ba1fae8d7a5f94066caf5a34a89a716&w=1060');
+            }
+            40% {
+                background-image: url('https://img.freepik.com/free-photo/view-black-white-light-projector-theatre_23-2151184683.jpg?t=st=1716902226~exp=1716905826~hmac=b3c8f7f411c6fd9b849c44ac629e7e9167a015c4aba735cd35b287c1be4fa9c8&w=1060');
+            }
+            40% {
+                background-image: url('https://img.freepik.com/free-photo/basketball-game-concept_23-2150910642.jpg?t=st=1716902250~exp=1716905850~hmac=007ab20b5ef8a5190dcc8c62f52710054979071b7046f81ce001d97a3c1b46e3&w=1060');
+            }
+            60% {
+                background-image: url('https://img.freepik.com/free-photo/view-futuristic-concert_23-2151073007.jpg?t=st=1716902385~exp=1716905985~hmac=b2d9ba4ab35c91315e144999dc40649845602213abc91c498b8c00c4cd892f25&w=1060');
+            }
+
+            80% {
+                background-image: url('https://img.freepik.com/free-photo/view-black-white-light-projector-theatre_23-2151184681.jpg?t=st=1716902510~exp=1716906110~hmac=ca6047358ac49eaaeb551ef7158a1efbcbe2c4d3fb87a4092cb255b6c03c4603&w=1060');
+            }
+            100% {
+                background-image: url('https://img.freepik.com/free-photo/beautiful-natural-waterfall-landscape_23-2150787954.jpg?t=st=1716941482~exp=1716945082~hmac=38410f8641bd3e1d8c35af5a36e79c70cce283d230a164873e50a05beab3f2f2&w=1060');
+            }
+            10% {
+                background-image: url('https://img.freepik.com/free-photo/soccer-stadium-full-people_23-2151548641.jpg?t=st=1716941062~exp=1716944662~hmac=505bce13104f8d7c400796e7cae60659ab29b1a97c8ecf3b76c7d1018f244e6f&w=1060');
+            }
+
+        }
+
+        .container {
+            padding-top: 50px; /* Adjust this value as needed */
+        }
+
+        .text-center {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow to the text */
+        }
+
+        .navbar-nav .nav-link {
+            color: white; /* Boja teksta */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font */
+        }
+    </style>
+
+</head>
+<body>
+<!-- Dodajemo Bootstrap navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">EventPlus</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/login}">Prijava</a>
+                </li>
+                <li class="nav-item">
+                    <!-- Koristimo Thymeleaf za putanju, ukoliko se koristi u Spring aplikaciji -->
+                    <a class="nav-link active" aria-current="page" target="_blank" th:href="@{/register}">Registracija</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Dodajemo Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-hAxFI5Lqvm4GxO79z3ZmFYaTKAcNdGAIKyk7RcFf3GbVa+P2m2TcwXj2FQv0b4MF"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8084:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://moj-mysql-new:3306/login_system
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+    depends_on:
+      - db
+
+  db:
+    container_name: moj-mysql-new
+    image: mysql:latest
+    ports:
+      - "6308:3306"
+    environment:
+      MYSQL_DATABASE: login_system
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - event_db_data:/var/lib/mysql
+
+volumes:
+  event_db_data:
+    external: true

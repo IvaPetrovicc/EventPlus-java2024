@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/white-paper-texture-background_23-2151025768.jpg?t=st=1717284234~exp=1717287834~hmac=4689d5fbf3573ea1b1694a759ff458c9038e3e0b00b7d4b7e1e5b8e2b3ebf53e&w=1060'); /* URL pozadine slike */
+            background-size: cover; /* Pokriva cijelu pozadinu */
+            background-position: center; /* Centrira pozadinu */
+            background-attachment: fixed; /* Pozadina je fiksirana prilikom skrolanja */
+        }
+        .event-card {
+            background-color: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 15px;
+            height: 100%; /* Ensure all cards in the row have the same height */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
+            transition: 0.3s; /* Add transition effect on hover */
+            font-size: 0.9rem; /* Reduce the font size for smaller cards */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 500px; /* Set a fixed height for the cards */
+        }
+        .event-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Increase shadow on hover */
+        }
+        .event-card h2 {
+            margin-top: 0;
+            font-weight: bold; /* Make the title bold */
+            font-size: 1.2rem; /* Slightly smaller font for the title */
+        }
+        .event-card p {
+            margin-bottom: 0.5rem; /* Slightly larger margin between paragraphs */
+        }
+        .event-card .location-icon {
+            margin-right: 5px;
+        }
+        .event-card img {
+            max-height: 200px; /* Set a max height for images */
+            width: 100%;
+            object-fit: cover; /* Ensure images cover the space without distortion */
+        }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" aria-current="page" th:href="@{/events}">EventPlus</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/eventview}">Kreiraj događaj</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Odjavi se</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="event : ${events}">
+            <div class="event-card">
+                <h2 th:text="${event.title}">Event Title</h2>
+                <p><i class="fas fa-calendar-alt location-icon"></i><span th:text="'Datum: ' + ${event.startDatetime}">Event Date</span></p>
+                <p><i class="fas fa-map-marker-alt location-icon"></i><span th:text="'Lokacija: ' + ${event.location}">Event Location</span></p>
+                <p th:text="${event.description}">Event Description</p>
+                <img th:if="${event.imageUrl}" th:src="${event.imageUrl}" alt="Event Image" class="img-fluid">
+                <div class="mt-2" th:if="${event.organizer.email == currentUser.email}">
+                    <a th:href="@{/events/edit/{id}(id=${event.id})}" class="btn btn-primary btn-sm">Uredi</a>
+                    <a th:href="@{/events/delete/{id}(id=${event.id})}" class="btn btn-danger btn-sm">Obriši</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
